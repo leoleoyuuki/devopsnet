@@ -1,130 +1,81 @@
-# API de Recomendações de Educação e Carreira Personalizada.
+# Challenge3 App
 
-Este projeto é uma API desenvolvida com **ASP.NET Core** que fornece recomendações personalizadas de educação e carreira para usuários. A API permite gerenciar usuários e cursos, fornecendo operações CRUD (Create, Read, Update, Delete) para ambos.
+Este projeto é um WebApp .NET 8 utilizando a arquitetura MVC com Razor Pages, voltado para o gerenciamento de empresas. Ele permite o cadastro, edição e visualização de dados empresariais, facilitando o controle de informações como nome, setor de atuação, tamanho, localização geográfica, número de funcionários e outras características relevantes.
 
-## Integrantes
-- **Ruan Guedes** - RM551096
-- **Ana Beatriz Bento Silva** - RM552536
-- **Guilherme Costa Batista** - RM551173
-- **Harthley Fernandes Teixeira Gomes** - RM551359
+O aplicativo foi containerizado usando Docker, o que possibilita um ambiente padronizado para execução e facilita a implantação em diferentes plataformas. No caso deste projeto, o deploy está sendo feito na Azure, aproveitando a infraestrutura escalável da nuvem, garantindo que o sistema esteja sempre disponível para os usuários.
 
-## Funcionalidades
+## Vídeo Youtube
+[Vídeo Demonstração .NET on Azure](https://youtu.be/WgJezOZBIFg)
 
-- **Gerenciamento de Usuários**: CRUD completo para usuários, incluindo a criação, listagem, atualização e exclusão de usuários.
-- **Gerenciamento de Cursos**: CRUD completo para cursos, permitindo adicionar, listar, atualizar e excluir cursos.
-- **Integração com Banco de Dados**: Utiliza Entity Framework Core com Oracle como banco de dados.
+## Tecnologias Utilizadas
 
-## Endpoints
+- **.NET 8**
+  - ASP.NET Core MVC
+  - Razor Pages
+  - Entity Framework Core
+  - Validação de Dados
+- **SQL Server** (para desenvolvimento)
+- **Docker** (para containerização)
+- **Azure** (para deploy)
 
-### UsersController
-
-- **GET** `/api/users`: Retorna a lista de todos os usuários.
-- **GET** `/api/users/{id}`: Retorna os detalhes de um usuário específico por ID.
-- **POST** `/api/users`: Cria um novo usuário.
-- **PUT** `/api/users/{id}`: Atualiza as informações de um usuário existente.
-- **DELETE** `/api/users/{id}`: Exclui um usuário específico.
-
-### CoursesController
-
-- **GET** `/api/courses`: Retorna a lista de todos os cursos.
-- **GET** `/api/courses/{id}`: Retorna os detalhes de um curso específico por ID.
-- **POST** `/api/courses`: Cria um novo curso.
-- **PUT** `/api/courses/{id}`: Atualiza as informações de um curso existente.
-- **DELETE** `/api/courses/{id}`: Exclui um curso específico.
-
-## Como Rodar o Projeto
+## Configuração do Projeto
 
 ### Pré-requisitos
 
-- [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-- [Oracle Database](https://www.oracle.com/database/)
-- [Postman](https://www.postman.com/) (para testar a API)
+- .NET SDK 8.0
+- Docker
+- Conta no Docker Hub
+- Conta no Azure
 
-### Passos para rodar:
+### Passos para Build e Deploy
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/sua-repositorio.git
+1. **Clone o repositório:**
 
-
-2. Instale as dependências:
-   ```bash
-   dotnet restore
-
-3. Configure a string de conexão com o Oracle no arquivo appsettings.json:
-   ```bash
-     {
-      "ConnectionStrings": {
-        "DefaultConnection": "oracle+oracledb://seu-rm:sua-senha@oracle.fiap.com.br:1521/ORCL"
-      }
-    }
-
-4. Execute as migrações para criar o banco de dados:
-   ```bash
-     dotnet ef database update
-
-5. Inicie o projeto:
-   ```bash
-     dotnet run
-
-# Estrutura do Projeto
-   ```bash
-      EducationAndCareerRecommendationsAPI/
-      ├── Controllers/
-      │   ├── UsersController.cs
-      │   └── CoursesController.cs
-      ├── Data/
-      │   └── ApplicationDbContext.cs
-      ├── Models/
-      │   ├── User.cs
-      │   └── Course.cs
-      ├── Repositories/
-      │   ├── IRecommendationsRepository.cs
-      │   └── RecommendationsRepository.cs
-      ├── Services/
-      │   ├── IRecommendationsService.cs
-      │   └── RecommendationsService.cs
-      ├── Program.cs
-      ├── Startup.cs
-      └── appsettings.json
-   ```
-
-# Controllers
-- **UsersController:** Lida com operações relacionadas a usuários.
-- **CoursesController:** Lida com operações relacionadas a cursos.
-  
-# Models
-- **User.cs:** Representa a entidade de um usuário.
-- **Course.cs:** Representa a entidade de um curso.
-  
-# Repositories
-- **IRecommendationsRepository:** Interface para o repositório.
-- **RecommendationsRepository:** Implementação do repositório.
-  
-# Services
-- **IRecommendationsService:** Interface para o serviço.
-- **RecommendationsService:** Implementação do serviço, responsável pela lógica de negócios.
-
-# Migrações do Entity Framework
- - **Criar uma nova migração:**
-     ```bash
-       dotnet ef migrations add NomeDaMigracao
-
- - **Criar uma nova migração:**
-     ```bash
-       dotnet ef database update
-
-# Swagger
-## A API é documentada usando Swagger. Para visualizar a documentação e testar os endpoints diretamente no navegador, acesse:     
 ```bash
-  https://localhost:5001/swagger
-````
+git clone https://github.com/guibk/DEVOPS-TOOLS-E-CLOUD-COMPUTING.git
+cd SistemaDeRecomendação
+```
 
-# Tecnologias Utilizadas
-- **ASP.NET Core 6**
-- **Entity Framework Core**
-- **Oracle Database**
-- **Swagger/OpenAPI**
-- **C#**
+2. **Build do projeto com .NET CLI:**
 
+   Execute o comando abaixo para compilar o projeto e gerar o arquivo `.dll`:
 
+```bash
+dotnet publish -c Release -o out
+```
+
+3. **Criação da Imagem Docker:**
+
+   Com a aplicação publicada, crie a imagem Docker:
+
+```bash
+docker build -t harthleyteixeiraa/sistemaderecomendacao:v1 .
+```
+
+4. **Envio da Imagem para o Docker Hub:**
+
+   Faça login no Docker Hub e envie a imagem:
+
+```bash
+docker login
+docker push harthleyteixeiraa/sistemaderecomendacao:v1
+```
+
+5. **Deploy no Azure:**
+
+   - Crie um Web App no Azure, selecionando a opção **Docker Container**.
+   - Na aba **Docker**, configure para usar a imagem `harthleyteixeiraa/sistemaderecomendacao:v1` do Docker Hub.
+
+6. **Verificar Log Stream:**
+
+   Após o deploy, você pode monitorar o status do aplicativo pelo Log Stream no portal da Azure.
+
+## Contribuição
+
+Se desejar contribuir com o projeto, siga os passos:
+
+1. Faça um fork do repositório
+2. Crie uma nova branch: `git checkout -b minha-feature`
+3. Commit suas mudanças: `git commit -m 'Adicionando nova feature'`
+4. Faça o push da branch: `git push origin minha-feature`
+5. Abra um pull request
