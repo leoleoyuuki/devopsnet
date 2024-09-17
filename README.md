@@ -5,7 +5,7 @@ Este projeto é um WebApp .NET 8 utilizando a arquitetura MVC com Razor Pages, v
 O aplicativo foi containerizado usando Docker, o que possibilita um ambiente padronizado para execução e facilita a implantação em diferentes plataformas. No caso deste projeto, o deploy está sendo feito na Azure, aproveitando a infraestrutura escalável da nuvem, garantindo que o sistema esteja sempre disponível para os usuários.
 
 ## Vídeo Youtube
-[Vídeo Demonstração .NET on Azure](https://youtu.be/WgJezOZBIFg)
+[Vídeo Demonstração .NET on Azure](https://youtu.be/KPkYR2Zunfo?si=foaHKMt548F2AHdb)
 
 ## Tecnologias Utilizadas
 
