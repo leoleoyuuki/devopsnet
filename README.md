@@ -1,4 +1,4 @@
-# Challenge3 App
+# DevOps Nexus App
 
 Este projeto é um WebApp .NET 8 utilizando a arquitetura MVC com Razor Pages, voltado para o gerenciamento de empresas. Ele permite o cadastro, edição e visualização de dados empresariais, facilitando o controle de informações como nome, setor de atuação, tamanho, localização geográfica, número de funcionários e outras características relevantes.
 
